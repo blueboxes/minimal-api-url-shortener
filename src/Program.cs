@@ -1,9 +1,11 @@
+using Azure.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
-var appSettings = builder.Configuration["AppConfigurationConnectionString"];
-builder.Host.ConfigureAppConfiguration(builder =>builder.AddAzureAppConfiguration(options =>
+builder.Host.ConfigureAppConfiguration(cfgBuilder =>cfgBuilder.AddAzureAppConfiguration(options =>
 {
-    options.Connect(appSettings).ConfigureRefresh((refreshOptions) =>
+    options
+    .Connect(new Uri(builder.Configuration["AppConfig:Endpoint"]), new DefaultAzureCredential())
+    .ConfigureRefresh((refreshOptions) =>
     {
         refreshOptions.Register(key: "Settings:Sentinel", refreshAll: true);
         refreshOptions.SetCacheExpiration(TimeSpan.FromSeconds(5));
