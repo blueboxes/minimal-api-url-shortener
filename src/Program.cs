@@ -1,15 +1,11 @@
-using Azure.Identity;
-
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
-
 app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new  List<string> { "index.html" }}); 
 app.UseStaticFiles();
 
-
 app.MapGet("/{id}", async (string id, HttpContext context, IWebHostEnvironment env) => {
 
-    var tableClient = new TableClient(new Uri(builder.Configuration["StorageUri"]), "UrlLookup", new DefaultAzureCredential());
+    var tableClient = new TableClient(new Uri(builder.Configuration["StorageUri"]), "UrlLookup", new Azure.Identity.DefaultAzureCredential());
     var url = tableClient.Query<TableRow>(filter: $"PartitionKey eq 'url' and RowKey eq '{id}'").SingleOrDefault();
         
     if(url is null){ 
