@@ -14,10 +14,10 @@
         }
 
         body{
-            font-family: 'Quicksand', sans-serif;
+            font-family: 'Alegreya Sans SC', sans-serif;
             background-color: #0370aa;
             color: #fff;
-            margin: 0;
+            margin: 0 20px 0 20px;
         }
 
         #main{
@@ -37,19 +37,24 @@
         }
         .msg p{
             font-size: 20px;
-            display: inline-block;
+            display: block;
             padding-right: 12px;
         }
-        a { color: #fff;}
-        .attachment-full{position: absolute;}
+        a { color: #fff; text-decoration: none;}
+        a:hover{text-decoration:underline;}
+        .attachment-full{
+            position: absolute;
+            left:-20px
+        }
     </style>
 </head>
 <body>
     <a href="https://github.com/blueboxes/minimal-api-url-shortener"><img loading="lazy" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub"></a>
     <div id="main">
     <div class="msg">
-        <h1>Url Shortener<h1>
-        <p>A Url Shortener created by <a href="https://twitter.com/johnkilmister">@johnkilmister</a> for more info see the <a href="/about">blog post</a></p>
+        <h1>Welcome<h1>
+        <p>A simple url shortener created by <a href="https://twitter.com/johnkilmister">@johnkilmister</a></p>
+        <p><a href="/about">learn more...</a></p>
     </div>
 </div>
 </body>
