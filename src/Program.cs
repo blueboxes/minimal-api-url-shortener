@@ -6,7 +6,7 @@ app.UseStaticFiles();
 app.MapGet("/{id}", async (string id, HttpContext context, IWebHostEnvironment env) => {
 
     var tableClient = new TableClient(new Uri(builder.Configuration["StorageUri"]), "UrlLookup", new Azure.Identity.DefaultAzureCredential());
-    var url = await tableClient.QueryAsync<TableRow>(ent => ent.PartitionKey.Equals("url") && ent.RowKey.Equals(id)).SingleOrDefault();
+    var url = tableClient.Query<TableRow>(ent => ent.PartitionKey.Equals("url") && ent.RowKey.Equals(id)).SingleOrDefault();
         
     if(url is null){ 
         context.Response.StatusCode = 404;
