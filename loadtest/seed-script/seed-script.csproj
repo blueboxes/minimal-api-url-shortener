@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>seed_script</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+<ItemGroup>
+  <PackageReference Include="Azure.Data.Tables" Version="12.6.1" />
+  <PackageReference Include="Azure.Identity" Version="1.7.0" />
+  <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+</ItemGroup>
+
+<ItemGroup>
+  <None Update="appsettings.json">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
+  
+</Project>
