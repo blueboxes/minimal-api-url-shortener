@@ -5,10 +5,10 @@ app.UseStaticFiles();
 
 app.MapGet("/{id}", async (string id, HttpContext context, IWebHostEnvironment env) => {
 
-    string targetUrl = null;
+    string? targetUrl = null;
 
     if(id.Length >= 2){
-        var tableClient = new TableClient(new Uri(builder.Configuration["StorageUri"]), "UrlLookup", new Azure.Identity.DefaultAzureCredential());
+        var tableClient = new TableClient(new Uri(builder.Configuration["StorageUri"]??throw new NullReferenceException("StorageUri has not been set in config")), "UrlLookup", new Azure.Identity.DefaultAzureCredential());
         targetUrl = tableClient.Query<TableRow>(ent => ent.PartitionKey.Equals(id.Substring(0,2)) && ent.RowKey.Equals(id)).SingleOrDefault()?.TargetUrl;
     }
         
