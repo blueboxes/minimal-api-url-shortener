@@ -13,7 +13,7 @@ for (int i = 0; i < TestTotal; i++)
     var prefix = i.ToString().PadLeft(3,'0');
  
     var item = new TableRow();
-    item.TargetUrl = "https://www.google.co.uk/";
+    item.TargetUrl = config["TargetUri"] ?? "";
     item.RowKey = $"{prefix}-test";
     item.PartitionKey = item.RowKey.Substring(0,2);
     tableClient.AddEntity(item);
