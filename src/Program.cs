@@ -1,8 +1,13 @@
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddOutputCache(options => {
+     options.AddBasePolicy(builder => builder.Expire(TimeSpan.FromMinutes(2)));
+});
+
 var app = builder.Build();
 app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new  List<string> { "index.html" }}); 
 app.UseStaticFiles();
-
+app.UseOutputCache();
+  
 app.MapGet("/{id}", async (string id, HttpContext context, IWebHostEnvironment env) => {
 
     string? targetUrl = null;
@@ -18,6 +23,6 @@ app.MapGet("/{id}", async (string id, HttpContext context, IWebHostEnvironment e
     }else{
         return Results.Redirect(targetUrl, true, false);
     }
-}); 
+}).CacheOutput(); 
 
 app.Run();

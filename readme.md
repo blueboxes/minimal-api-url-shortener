@@ -26,5 +26,6 @@ This project does not yet have a UI to add new links. To add any new links add a
 - Bicep templates for deployment
 
 # Release Notes
+0.2.0 - Added output cache
 0.1.1 - Update partition key for scale
 0.1.0 - Initial Commit
